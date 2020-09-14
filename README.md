@@ -10,5 +10,6 @@ The second game of my game development journey! </br>
 ## Progress 
 
 - [x] Part 1 - Paddle Movement
-- [x] Part 1 - Ball Movement
-- [ ] Part 1 - Bricks
+- [x] Part 2 - Ball Movement
+- [x] Part 3 - Bricks
+- [ ] Part 4 - The socres and Lives

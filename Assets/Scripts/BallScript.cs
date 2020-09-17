@@ -9,6 +9,7 @@ public class BallScript : MonoBehaviour
     public Transform paddle;
     public float ballSpeed;
     public Transform explosion;
+    public GameManager gm;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class BallScript : MonoBehaviour
             Debug.Log("Ball hit the bottom of the screen!");
             rb.velocity = Vector2.zero;
             inPlay = false;
+            gm.UpdateLives(-1);
         }
     }
 
@@ -49,6 +51,8 @@ public class BallScript : MonoBehaviour
             Transform newExplosion = Instantiate(explosion, collision.transform.position, collision.transform.rotation); //Create an explosion
 
             Destroy(newExplosion.gameObject, 2.5f); //Destroy the explosion effect
+
+            gm.UpdateScore(collision.gameObject.GetComponent<BrickScript>().points);
 
             Destroy(collision.gameObject); // Destroy the brick
         }

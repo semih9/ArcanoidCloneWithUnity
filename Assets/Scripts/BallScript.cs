@@ -9,6 +9,7 @@ public class BallScript : MonoBehaviour
     public Transform paddle;
     public float ballSpeed;
     public Transform explosion;
+    public Transform powerup;
     public GameManager gm;
 
     // Start is called before the first frame update
@@ -21,6 +22,11 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm.gameOver)
+        {
+            return;
+        }
+
         if (!inPlay)
         {
             transform.position = paddle.position;
@@ -48,13 +54,33 @@ public class BallScript : MonoBehaviour
     {
         if (collision.transform.CompareTag("Brick"))
         {
-            Transform newExplosion = Instantiate(explosion, collision.transform.position, collision.transform.rotation); //Create an explosion
+            BrickScript brickScript = collision.gameObject.GetComponent<BrickScript>();
 
-            Destroy(newExplosion.gameObject, 2.5f); //Destroy the explosion effect
+            if(brickScript.hitsToBreak > 1)
+            {
+                brickScript.BreakBrick();
+            }
+            else
+            {
+                int randChance = Random.Range(1, 100);
 
-            gm.UpdateScore(collision.gameObject.GetComponent<BrickScript>().points);
+                if (randChance < 50)
+                {
+                    Instantiate(powerup, collision.transform.position, collision.transform.rotation);
+                }
 
-            Destroy(collision.gameObject); // Destroy the brick
+
+                Transform newExplosion = Instantiate(explosion, collision.transform.position, collision.transform.rotation); //Create an explosion
+
+                Destroy(newExplosion.gameObject, 2.5f); //Destroy the explosion effect
+
+                gm.UpdateScore(brickScript.points);
+
+                gm.UpdateNumberOfBricks();
+
+                Destroy(collision.gameObject); // Destroy the brick
+            }
+
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
 using UnityEngine;
+
 
 public class PaddleScript : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class PaddleScript : MonoBehaviour
     public float speed;
     public float rightScreenEdge;
     public float leftScreenEdge;
+    public GameManager gm;
 
 
     // Start is called before the first frame update
@@ -20,6 +23,11 @@ public class PaddleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm.gameOver)
+        {
+            return;
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
 
         transform.Translate(Vector2.right * horizontal * Time.deltaTime * speed);
@@ -32,4 +40,15 @@ public class PaddleScript : MonoBehaviour
             transform.position = new Vector2(rightScreenEdge, transform.position.y);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("extraLife"))
+        {
+            gm.UpdateLives(1);
+
+            Destroy(other.gameObject);
+        }
+    }
 }
+#endif

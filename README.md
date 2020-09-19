@@ -1,4 +1,4 @@
-# ArcanoidCloneWithUnity
+# 2DArcanoidCloneWithUnity
  Unity GameDev Tutorial for Beginners: Brick Breaker Game
 
 

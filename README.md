@@ -16,7 +16,7 @@ The second game of my game development journey! </br>
 - [x] Part 5 - Ending the Level and Game
 - [x] Part 6 - Making a Powerup
 - [x] Part 7 - Making Special Bricks
-- [ ] Part 8 - Loading Levels
+- [x] Part 8 - Loading Levels
 - [ ] Part 9 - Music and Sounds
 - [ ] Part 10 - High Score
 - [ ] Part 11 - Start Menu

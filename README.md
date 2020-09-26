@@ -17,7 +17,14 @@ The second game of my game development journey! </br>
 - [x] Part 6 - Making a Powerup
 - [x] Part 7 - Making Special Bricks
 - [x] Part 8 - Loading Levels
-- [ ] Part 9 - Music and Sounds
-- [ ] Part 10 - High Score
-- [ ] Part 11 - Start Menu
+- [x] Part 9 - Music and Sounds
+- [x] Part 10 - High Score
+- [x] Part 11 - Start Menu
 
+## New Features to be Added
+
+- [ ] More Levels
+- [ ] Pause Screen
+- [ ] New Paddle Sprite 
+- [ ] New Powerups ( Fire Power, Ball speed slow, Go to next level, etc. ) 
+- [ ] Ball Speed Up with Levels or Time

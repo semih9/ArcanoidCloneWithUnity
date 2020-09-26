@@ -1,7 +1,7 @@
-﻿#if UNITY_EDITOR
+﻿
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
+//using TreeEditor;
 using UnityEngine;
 
 
@@ -17,7 +17,7 @@ public class PaddleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -51,4 +51,3 @@ public class PaddleScript : MonoBehaviour
         }
     }
 }
-#endif

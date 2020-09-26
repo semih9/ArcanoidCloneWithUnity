@@ -11,11 +11,14 @@ public class BallScript : MonoBehaviour
     public Transform explosion;
     public Transform powerup;
     public GameManager gm;
+    AudioSource hitSound;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        hitSound = GetComponent<AudioSource>();
 
     }
 
@@ -43,7 +46,6 @@ public class BallScript : MonoBehaviour
     {
         if (collision.CompareTag("Bottom"))
         {
-            Debug.Log("Ball hit the bottom of the screen!");
             rb.velocity = Vector2.zero;
             inPlay = false;
             gm.UpdateLives(-1);
@@ -81,6 +83,7 @@ public class BallScript : MonoBehaviour
                 Destroy(collision.gameObject); // Destroy the brick
             }
 
+            hitSound.Play();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     public int score;
     public Text livesText;
     public Text scoreText;
+    public Text highScoreText;
+    public InputField highScoreInput;
     public bool gameOver;
     public GameObject gameOverPanel;
     public GameObject loadLevelPanel;
@@ -85,6 +88,31 @@ public class GameManager : MonoBehaviour
         gameOver = true;
 
         gameOverPanel.SetActive(true);
+
+        int highScore = PlayerPrefs.GetInt("HighScore");
+
+        if(score > highScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+
+            highScoreText.text = "New High Score! " + "\n" + "Enter Your Name Below";
+            highScoreInput.gameObject.SetActive(true);
+        }
+        else
+        {
+            highScoreText.text = PlayerPrefs.GetString("HighScoreName") + "'s " + "High Score was " + highScore + "\n" + "Can you beat it?";
+        }
+    }
+
+    public void NewHighScore()
+    {
+        string highScoreName = highScoreInput.text;
+
+        PlayerPrefs.SetString("HighScoreName", highScoreName);
+
+        highScoreInput.gameObject.SetActive(false);
+
+        highScoreText.text = "Congratulations " + highScoreName + "\n" + "Your New High Score is " + score;
     }
 
     public void PlayAgain()
@@ -94,6 +122,6 @@ public class GameManager : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+        SceneManager.LoadScene("StartMenu");
     }
 }
